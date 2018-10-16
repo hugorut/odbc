@@ -110,6 +110,11 @@ func SQLRowCount(statementHandle SQLHSTMT, rowCountPtr *SQLLEN) (ret SQLRETURN) 
 	return SQLRETURN(r)
 }
 
+func SQLTables(statementHandle SQLHSTMT) SQLRETURN {
+	r := C.SQLTables(C.SQLHSTMT(statementHandle), nil, 0, nil, 0, nil, 0, nil, 0)
+	return SQLRETURN(r)
+}
+
 func SQLSetEnvAttr(environmentHandle SQLHENV, attribute SQLINTEGER, valuePtr SQLPOINTER, stringLength SQLINTEGER) (ret SQLRETURN) {
 	r := C.SQLSetEnvAttr(C.SQLHENV(environmentHandle), C.SQLINTEGER(attribute), C.SQLPOINTER(valuePtr), C.SQLINTEGER(stringLength))
 	return SQLRETURN(r)
